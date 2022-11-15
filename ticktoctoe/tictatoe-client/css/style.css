@@ -1,0 +1,48 @@
+body {  
+    font-family: Helvetica, Arial, sans-serif;  
+    background: #EEEEEE;
+}
+
+h1,h2,h3 {
+	color: #FFA600;
+	margin:4px auto;  
+}
+
+#container{  
+	background: white;
+    border:5px solid grey;  
+    width:600px;
+    margin:0 auto;  
+    padding:10px;  
+}
+
+#eventLog{  
+    padding:5px;  
+    border:1px solid black;  
+}
+
+#eventLog p {
+    margin:0;
+}
+
+#gameMessages{
+    padding:5px;
+    border:1px solid black;
+}
+
+#gameMessages p {
+    margin:0;
+}
+
+#result{
+	font-weight: bold;
+	color: #5B85C9;	
+}
+
+.event {  
+    color:#999;  
+}
+
+.warning{  
+    color:#C73636;  
+}

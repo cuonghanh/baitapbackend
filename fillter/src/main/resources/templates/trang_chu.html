@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+
+		<div>
+			<h1 class="text-center">Student Manager</h1>
+			<br> <a th:href="@{/students/new}" class="btn btn-primary">Add
+				Student </a>
+		</div>
+		<br>
+		<div>
+			<form  >
+				Filter: <input type="text" name="keyword" th:value= "${keyword}" /> &nbsp; 
+				<input type="submit" value="Search"/> &nbsp;	
+				<input type="button" value="Clean" onclick="clearFilter()" />
+					
+			</form>
+		</div>
+		<br>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Student First Name</th>
+					<th>Student lastName</th>
+					<th>Student adress</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="students:${student}">
+					<td th:text="${students.id}"></td>
+					<td th:text="${students.firstName}"></td>
+					<td th:text="${students.lastName}"></td>
+					<td th:text="${students.email}"></td>
+					<td><a th:href="@{/students/edit/{id} (id=${students.id})}"
+						class="btn btn-danger">update Student </a> <a
+						th:href="@{/students/{id} (id=${students.id})} "
+						class="btn btn-info">DeleTe </a></td>
+				</tr>
+
+			</tbody>
+
+
+		</table>
+	</div>
+   	<script type="text/javascript">
+   	    function clearFilter(){
+   	    	window.location= '/students';
+   	    }
+   	
+   	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+

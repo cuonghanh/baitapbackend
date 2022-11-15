@@ -1,0 +1,78 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui-1.8.18.custom.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script src="js/jquery/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="js/tictactoe_lib.js" type="text/javascript"></script>
+	<script src="js/helloworld.js" type="text/javascript"></script>
+
+	<script src="js/cubeia/firebase-js-api-1.8.0-CE-javascript.js" type="text/javascript"></script>
+	<script src="js/cubeia/firebase-protocol-1.8.0-CE-javascript.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// Start with a check that the browser supports websockets
+			if (window.WebSocket && window.WebSocket.prototype && window.WebSocket.prototype.send) {
+				//The user has WebSockets
+				$('#table').hide();
+				connector = new FIREBASE.Connector(packetCallback, lobbyCallback, loginCallback, statusCallback);
+				//connector.connect("FIREBASE.WebSocketAdapter", '192.168.1.149', '8080', "socket");
+				connector.connect("FIREBASE.WebSocketAdapter", 'localhost', '8080', "socket");
+			} else {
+				$('#eventLog, input, button, #table').fadeOut("fast");
+				$('<p>Oh no, you need a browser that supports WebSockets. How about <a href="http://www.google.com/chrome">Google Chrome</a>?</p>').appendTo('#container');
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="container">
+
+			<h1>Firebase JavaScript API</h1>
+
+			<h3>Hello World Tutorial</h3>
+
+			<p id="examples">Log in using an integer for password, e.g. Foo 123</p>
+
+			<input id="username" title="Username" type="text" />
+			<input id="password" type="text" />
+			<button id="login" onclick="doLogin()">Login</button>
+
+			<br /><br />
+
+			<div id="result">
+
+			</div>
+
+			<div id="eventLog">
+
+			</div>
+			<p></p>
+
+			<div id="lobby" class="window">
+				<table id="lobbyList"></table>
+			</div>
+
+			<div id="table" class="window">
+				<div id="turn"></div>
+
+				<canvas width="500" height="500" id="board"></canvas>
+
+				<div id="gameMessages">
+
+				</div>
+				<input id="message" title="message" size="90" type="text" />
+				<button id="sendMessage" onclick="doSendMessage()">Send message</button>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
